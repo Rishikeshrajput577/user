@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f2">
+  <title>Store dashboard — DashBasket</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#1b2821;background:#f5f7f2;font-synthesis:none;--green:#176b45;--deep:#105236;--muted:#758078;--line:#e6ebe4;--white:#fff;--lime:#d7f36a;--shadow:0 12px 32px rgba(27,40,33,.06)}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh}button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:248px;padding:24px 16px;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:5}.brand{display:flex;align-items:center;gap:10px;padding:0 10px 28px;color:var(--deep);font-size:20px;font-weight:850;letter-spacing:-.7px}.brand-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:var(--lime);font-size:20px}.store-label{margin:0 12px 10px;color:#99a29a;font-size:10px;font-weight:800;letter-spacing:1.3px}.nav{display:grid;gap:5px}.nav button{display:flex;align-items:center;gap:12px;width:100%;padding:12px;border:0;border-radius:10px;background:transparent;color:#59645c;text-align:left;font-size:13px;font-weight:650}.nav button:hover,.nav button.active{background:#edf5ee;color:var(--green)}.nav-icon{width:20px;text-align:center;font-size:17px}.sidebar-bottom{margin-top:auto;padding:16px 10px 0;border-top:1px solid var(--line);color:var(--muted);font-size:11px;line-height:1.7}.sidebar-bottom a{color:var(--green);font-weight:700}.main{margin-left:248px;min-height:100vh}.topbar{height:74px;padding:0 34px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:3;backdrop-filter:blur(10px)}.topbar-label{color:var(--muted);font-size:12px}.top-actions{display:flex;align-items:center;gap:14px}.user-chip{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700}.avatar{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#edf5ee;color:var(--green)}.logout{border:1px solid var(--line);border-radius:8px;padding:8px 11px;background:#fff;color:#57635b;font-size:11px;font-weight:700}.content{max-width:1320px;margin:auto;padding:32px 34px 50px}.page{display:none}.page.active{display:block}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin:0 0 22px}.page-head h1{margin:0;font-size:25px;letter-spacing:-.8px}.page-head p{margin:6px 0 0;color:var(--muted);font-size:12px}.eyebrow{color:var(--green);font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase}.button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:9px 13px;border:0;border-radius:9px;background:var(--green);color:white;font-size:12px;font-weight:750}.button:hover{background:var(--deep)}.button.secondary{border:1px solid var(--line);background:#fff;color:#344138}.button.small{min-height:31px;padding:6px 9px;font-size:10px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}.stat,.card{border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:var(--shadow)}.stat{padding:17px 18px}.stat-label{color:var(--muted);font-size:11px;font-weight:650}.stat-value{margin-top:10px;font-size:25px;font-weight:800;letter-spacing:-.7px}.stat-note{margin-top:5px;color:#8a948c;font-size:10px}.card{padding:19px;margin-bottom:17px}.card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.card-head h2{margin:0;font-size:14px}.card-head p{margin:4px 0 0;color:var(--muted);font-size:10px}.link-button{border:0;background:transparent;color:var(--green);font-size:11px;font-weight:750}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{padding:10px 11px;color:#849087;text-align:left;font-size:9px;letter-spacing:.6px;text-transform:uppercase;font-weight:750;border-bottom:1px solid var(--line)}td{padding:12px 11px;border-bottom:1px solid #f0f2ee;color:#39453d;font-size:11px}tbody tr:last-child td{border-bottom:0}tbody tr.clickable{cursor:pointer}tbody tr.clickable:hover{background:#f8faf6}.product-cell{display:flex;align-items:center;gap:9px}.product-emoji{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:#f1f5ed;font-size:17px}.primary-text{color:#26352b;font-weight:720}.secondary-text{margin-top:3px;color:#89938b;font-size:10px}.badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:30px;background:#f0f3ef;color:#536057;font-size:9px;font-weight:750}.badge.new,.badge.confirmed{background:#e8f4ec;color:#24734a}.badge.packing{background:#fff4d8;color:#926811}.badge.out-for-delivery{background:#eaf1ff;color:#4564a0}.badge.delivered{background:#e8f4ec;color:#24734a}.badge.cancelled{background:#fff0ed;color:#b24c37}.badge.low{background:#fff1df;color:#a5631b}.badge.out{background:#fff0ed;color:#bc4939}.inline-input{width:80px;padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:#fff;color:#28352d;font-size:11px}.stock-input{width:66px}.table-actions{display:flex;align-items:center;gap:6px}.search{width:min(310px,50vw);height:37px;padding:0 11px;border:1px solid var(--line);border-radius:9px;background:white;display:flex;align-items:center;gap:8px}.search input{width:100%;border:0;outline:0;background:transparent;font-size:11px}.toolbar{display:flex;align-items:center;gap:9px}.empty{padding:32px 12px;text-align:center;color:#879188;font-size:12px}.empty strong{display:block;margin-bottom:5px;color:#405047;font-size:14px}.alert{display:none;margin:0 0 15px;padding:11px 13px;border:1px solid #f3d0c8;border-radius:9px;background:#fff3f0;color:#9e3b2b;font-size:12px}.alert.show{display:block}.overview-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.8fr);gap:16px}.quick-list{display:grid;gap:10px}.quick-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #f0f2ee}.quick-item:last-child{border-bottom:0}.quick-item strong{display:block;font-size:11px}.quick-item span{display:block;margin-top:3px;color:var(--muted);font-size:10px}.customer-products{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.customer-products span{padding:5px 8px;border-radius:20px;background:#f1f5ee;color:#4a594d;font-size:10px}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}.detail-item{padding:11px;border-radius:9px;background:#f6f8f4}.detail-item span{display:block;color:var(--muted);font-size:10px}.detail-item strong{display:block;margin-top:5px;font-size:12px;overflow-wrap:anywhere}.dialog{width:min(540px,calc(100vw - 28px));max-height:88vh;overflow:auto;padding:22px;border:0;border-radius:16px;box-shadow:0 20px 70px rgba(0,0,0,.2)}.dialog::backdrop{background:rgba(18,30,22,.45);backdrop-filter:blur(3px)}.dialog-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:16px}.dialog-head h2{margin:0;font-size:18px}.dialog-head p{margin:5px 0 0;color:var(--muted);font-size:11px}.close{width:30px;height:30px;border:0;border-radius:8px;background:#f1f4ef;color:#4a554d;font-size:18px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{color:#566259;font-size:10px;font-weight:750}.field input,.field select,.field textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:#29362e;font-size:12px}.field textarea{min-height:70px;resize:vertical}.dialog-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}.toast{position:fixed;right:24px;bottom:22px;z-index:20;max-width:min(420px,calc(100vw - 32px));padding:12px 16px;border-radius:10px;background:#21342a;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.2);font-size:12px;opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}.login-screen{position:fixed;inset:0;z-index:15;display:grid;place-items:center;padding:20px;background:#f5f7f2}.login-card{width:min(410px,100%);padding:30px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 18px 55px rgba(27,40,33,.1)}.login-card .brand{padding:0 0 22px}.login-card h1{margin:0;font-size:23px;letter-spacing:-.7px}.login-card p{margin:8px 0 22px;color:var(--muted);font-size:12px;line-height:1.6}.login-card .field{margin-bottom:13px}.login-card .button{width:100%;margin-top:5px}.login-hint{margin:14px 0 0!important;padding:10px;border-radius:8px;background:#f4f7f1;color:#667168!important;font-size:10px!important}.login-error{min-height:16px;margin:8px 0;color:#b34230;font-size:11px}
+    @media(max-width:980px){.sidebar{width:210px}.main{margin-left:210px}.content{padding:25px 22px}.topbar{padding:0 22px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.overview-grid{grid-template-columns:1fr}}
+    .login-screen[hidden]{display:none}
+    @media(max-width:680px){.sidebar{inset:auto 0 0;width:auto;height:64px;padding:5px 7px;border-right:0;border-top:1px solid var(--line);display:block}.brand,.store-label,.sidebar-bottom{display:none}.nav{height:100%;grid-template-columns:repeat(5,1fr);gap:2px}.nav button{height:52px;padding:5px 2px;justify-content:center;flex-direction:column;gap:2px;font-size:9px}.nav-icon{font-size:16px}.main{margin-left:0;padding-bottom:65px}.topbar{height:60px;padding:0 14px}.topbar-label{font-size:10px}.top-actions{gap:7px}.user-chip{font-size:10px}.avatar{width:28px;height:28px}.logout{padding:7px;font-size:10px}.content{padding:22px 14px 34px}.page-head{align-items:flex-start}.page-head h1{font-size:22px}.page-head p{max-width:260px;line-height:1.5}.stats{gap:9px}.stat{padding:13px}.stat-value{font-size:21px}.stat-label{font-size:10px}.card{padding:14px}.toolbar{flex-wrap:wrap}.search{width:100%;max-width:none}.page-head .toolbar{width:100%}.page-head:has(.search){display:grid}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.dialog{padding:18px}.toast{right:12px;bottom:76px}}
+  </style>
+</head>
+<body>
+  <aside class="sidebar" aria-label="Dashboard navigation">
+    <a class="brand" href="/"><span class="brand-mark">🥬</span> dashbasket</a>
+    <p class="store-label">STORE MANAGEMENT</p>
+    <nav class="nav">
+      <button class="active" data-page="overview"><span class="nav-icon">⌂</span>Overview</button>
+      <button data-page="orders"><span class="nav-icon">▤</span>Orders</button>
+      <button data-page="products"><span class="nav-icon">▦</span>Products &amp; stock</button>
+      <button data-page="customers"><span class="nav-icon">♙</span>Customers</button>
+      <button data-page="delivery"><span class="nav-icon">🛵</span>Delivery</button>
+    </nav>
+    <div class="sidebar-bottom">Local store dashboard<br><a href="/">← Open customer website</a></div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <span class="topbar-label">Store management / <strong id="breadcrumb">Overview</strong></span>
+      <div class="top-actions"><span class="user-chip"><span class="avatar">A</span><span id="username-label">Admin</span></span><button class="logout" id="logout">Sign out</button></div>
+    </header>
+    <div class="content">
+      <div id="page-error" class="alert" role="alert"></div>
+      <section class="page active" id="page-overview">
+        <div class="page-head"><div><div class="eyebrow">Store pulse</div><h1>Good morning 👋</h1><p>Here is what is happening with your store today.</p></div><button class="button secondary" id="refresh">↻ Refresh data</button></div>
+        <div class="stats">
+          <article class="stat"><div class="stat-label">Orders today</div><div class="stat-value" id="stat-today">0</div><div class="stat-note">Across all order statuses</div></article>
+          <article class="stat"><div class="stat-label">Sales today</div><div class="stat-value" id="stat-sales">₹0</div><div class="stat-note">Excludes cancelled orders</div></article>
+          <article class="stat"><div class="stat-label">Active products</div><div class="stat-value" id="stat-products">0</div><div class="stat-note">Available in the storefront</div></article>
+          <article class="stat"><div class="stat-label">Low stock</div><div class="stat-value" id="stat-low">0</div><div class="stat-note">Products with 5 or fewer units</div></article>
+        </div>
+        <div class="overview-grid">
+          <section class="card"><div class="card-head"><div><h2>Latest orders</h2><p>New orders from your customer website</p></div><button class="link-button" data-go="orders">All orders →</button></div><div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody id="recent-orders"></tbody></table></div></section>
+          <section class="card"><div class="card-head"><div><h2>Stock to check</h2><p>Keep popular items ready to go</p></div><button class="link-button" data-go="products">Manage →</button></div><div class="quick-list" id="low-stock-list"></div></section>
+        </div>
+      </section>
+      <section class="page" id="page-orders">
+        <div class="page-head"><div><div class="eyebrow">Fulfilment</div><h1>Orders</h1><p>Review incoming orders, update their status and delivery notes.</p></div></div>
+        <div class="toolbar" style="margin-bottom:14px"><label class="search">⌕ <input id="order-search" placeholder="Search order, name or phone"></label><select class="inline-input" id="order-status-filter" aria-label="Filter orders"><option value="">All statuses</option><option>New</option><option>Confirmed</option><option>Packing</option><option>Out for delivery</option><option>Delivered</option><option>Cancelled</option></select></div>
+        <section class="card"><div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Address</th><th>Total</th><th>Status</th><th></th></tr></thead><tbody id="orders-table"></tbody></table></div></section>
+      </section>
+      <section class="page" id="page-products">
+        <div class="page-head"><div><div class="eyebrow">Catalogue</div><h1>Products &amp; stock</h1><p>Update prices and stock; changes show on the customer website.</p></div><button class="button" id="add-product">＋ Add product</button></div>
+        <section class="card"><div class="card-head"><div><h2>Categories</h2><p>Organise your storefront by section.</p></div></div><div class="toolbar" style="margin-bottom:12px"><input id="new-category-name" placeholder="New category name" style="min-width:220px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;flex:1;"><button class="button small" id="add-category-button" type="button">Add category</button></div><div id="category-chips"></div></section>
+        <label class="search" style="margin-bottom:14px">⌕ <input id="product-search" placeholder="Search products or category"></label>
+        <section class="card"><div class="table-wrap"><table><thead><tr><th>Product</th><th>Category</th><th>Price</th><th>In stock</th><th>Storefront</th><th>Save</th></tr></thead><tbody id="products-table"></tbody></table></div></section>
+      </section>
+      <section class="page" id="page-customers">
+        <div class="page-head"><div><div class="eyebrow">Relationships</div><h1>Customers</h1><p>Order count and product history are grouped by phone number.</p></div></div>
+        <label class="search" style="margin-bottom:14px">⌕ <input id="customer-search" placeholder="Search customer name or phone"></label>
+        <section class="card"><div class="table-wrap"><table><thead><tr><th>Customer</th><th>Phone</th><th>Orders</th><th>Total spent</th><th>Last order</th><th>Top products</th></tr></thead><tbody id="customers-table"></tbody></table></div></section>
+      </section>
+      <section class="page" id="page-delivery">
+        <div class="page-head"><div><div class="eyebrow">Delivery desk</div><h1>Delivery</h1><p>Orders ready for packing and delivery.</p></div><button class="button secondary" data-go="orders">Manage all orders →</button></div>
+        <section class="card"><div class="card-head"><div><h2>Delivery queue</h2><p>Move an order through each fulfilment stage.</p></div></div><div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Delivery address</th><th>Status</th><th>Update</th></tr></thead><tbody id="delivery-table"></tbody></table></div></section>
+        <section class="card"><div class="card-head"><div><h2>Partner location sharing</h2><p>Live delivery-partner GPS sharing is not enabled in this local version.</p></div></div><div class="empty" style="padding:18px 4px"><strong>Location sharing is a next step</strong>Partner phone access and live tracking can be connected when you are ready.</div></section>
+      </section>
+    </div>
+  </main>
+  <section class="login-screen" id="login-screen">
+    <form class="login-card" id="login-form">
+      <a class="brand" href="/"><span class="brand-mark">🥬</span> dashbasket</a>
+      <div class="eyebrow">Store admin</div><h1>Sign in to your dashboard</h1><p>Manage incoming orders, products, stock and customer order history.</p>
+      <div class="field"><label for="login-username">Username</label><input id="login-username" name="username" autocomplete="username" required value="admin"></div>
+      <div class="field"><label for="login-password">Password</label><input id="login-password" name="password" type="password" autocomplete="current-password" required></div>
+      <div class="login-error" id="login-error" role="alert"></div>
+      <button class="button" type="submit">Sign in →</button>
+      <p class="login-hint">Set your admin credentials in the private <code>.env</code> file before starting the server.</p>
+    </form>
+  </section>
+  <dialog class="dialog" id="order-dialog"><div class="dialog-head"><div><h2 id="order-title">Order details</h2><p id="order-subtitle"></p></div><button class="close" data-close="order-dialog" aria-label="Close">×</button></div><div id="order-detail"></div><div class="form-grid" style="margin-top:14px"><div class="field"><label for="order-status">Order status</label><select id="order-status"><option>New</option><option>Confirmed</option><option>Packing</option><option>Out for delivery</option><option>Delivered</option><option>Cancelled</option></select></div><div class="field"><label for="partner-location">Partner location note / map link</label><input id="partner-location" placeholder="Add a location note or map link"></div></div><div class="dialog-actions"><button class="button secondary" data-close="order-dialog">Close</button><button class="button" id="save-order">Save order update</button></div></dialog>
+  <dialog class="dialog" id="customer-dialog"><div class="dialog-head"><div><h2 id="customer-title">Customer</h2><p id="customer-subtitle"></p></div><button class="close" data-close="customer-dialog" aria-label="Close">×</button></div><div id="customer-detail"></div><div class="dialog-actions"><button class="button secondary" data-close="customer-dialog">Close</button></div></dialog>
+  <dialog class="dialog" id="product-dialog"><form id="product-form"><div class="dialog-head"><div><h2>Add a product</h2><p>New items are added to stock and the customer catalogue.</p></div><button type="button" class="close" data-close="product-dialog" aria-label="Close">×</button></div><div class="form-grid"><div class="field full"><label for="new-name">Product name</label><input id="new-name" required maxlength="100"></div><div class="field"><label for="new-category">Category</label><input id="new-category" list="category-options" required placeholder="e.g. Dairy"></div><datalist id="category-options"></datalist><div class="field"><label for="new-emoji">Emoji</label><input id="new-emoji" value="🛍️" maxlength="8"></div><div class="field"><label for="new-price">Price (₹)</label><input id="new-price" type="number" min="0" step="0.01" required></div><div class="field"><label for="new-stock">Opening stock</label><input id="new-stock" type="number" min="0" step="1" required></div><div class="field"><label for="new-weight">Pack size</label><input id="new-weight" value="1 piece"></div><div class="field"><label for="new-origin">Brand / source</label><input id="new-origin" value="Local store"></div></div><div class="dialog-actions"><button type="button" class="button secondary" data-close="product-dialog">Cancel</button><button class="button" type="submit">Add product</button></div></form></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    const state = { orders: [], products: [], customers: [], categories: [], selectedOrder: null, toastTimer: null };
+    const money = value => `₹${Number(value || 0).toLocaleString("en-IN", { maximumFractionDigits: 2 })}`;
+    const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+    const formatDate = value => new Date(value).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" });
+    const orderAddress = order => {
+      const address = order.address || {};
+      return [address.line, address.area, address.city, address.pincode].filter(Boolean).join(", ") || "Address not provided";
+    };
+    async function api(url, options = {}) {
+      const response = await fetch(url, { credentials: "same-origin", ...options, headers: { ...(options.body ? { "Content-Type": "application/json" } : {}), ...options.headers } });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || `Request failed (${response.status}).`);
+      return result;
+    }
+    function toast(message) {
+      const element = document.getElementById("toast");
+      element.textContent = message;
+      element.classList.add("show");
+      clearTimeout(state.toastTimer);
+      state.toastTimer = setTimeout(() => element.classList.remove("show"), 2600);
+    }
+    function showError(error) {
+      const element = document.getElementById("page-error");
+      element.textContent = error.message || String(error);
+      element.classList.add("show");
+    }
+    function clearError() { document.getElementById("page-error").classList.remove("show"); }
+    function showLogin() { document.getElementById("login-screen").hidden = false; }
+    function hideLogin() { document.getElementById("login-screen").hidden = true; }
+    async function refreshData() {
+      clearError();
+      const [orders, products, customers, categories] = await Promise.all([api("/api/orders"), api("/api/admin/products"), api("/api/customers"), api("/api/categories")]);
+      state.orders = orders;
+      state.products = products;
+      state.customers = customers;
+      state.categories = categories;
+      renderAll();
+    }
+    function statusBadge(status) {
+      const className = String(status || "New").toLowerCase().replace(/\s+/g, "-");
+      return `<span class="badge ${escapeHtml(className)}">${escapeHtml(status || "New")}</span>`;
+    }
+    function renderOverview() {
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const ordersToday = state.orders.filter(order => order.createdAt >= today.getTime());
+      const sales = ordersToday.filter(order => order.status !== "Cancelled").reduce((sum, order) => sum + order.total, 0);
+      const active = state.products.filter(product => product.active);
+      const low = active.filter(product => product.stock <= 5);
+      document.getElementById("stat-today").textContent = ordersToday.length;
+      document.getElementById("stat-sales").textContent = money(sales);
+      document.getElementById("stat-products").textContent = active.length;
+      document.getElementById("stat-low").textContent = low.length;
+      const recent = [...state.orders].sort((a, b) => b.createdAt - a.createdAt).slice(0, 6);
+      document.getElementById("recent-orders").innerHTML = recent.length ? recent.map(order => `<tr class="clickable" data-order="${escapeHtml(order.id)}"><td class="primary-text">${escapeHtml(order.id)}<div class="secondary-text">${formatDate(order.createdAt)}</div></td><td>${escapeHtml(order.customerName)}</td><td>${order.items.reduce((sum, item) => sum + item.quantity, 0)}</td><td class="primary-text">${money(order.total)}</td><td>${statusBadge(order.status)}</td></tr>`).join("") : `<tr><td colspan="5"><div class="empty">No orders yet. Orders placed on the customer site will show here.</div></td></tr>`;
+      document.getElementById("low-stock-list").innerHTML = low.length ? low.slice(0, 6).map(product => `<div class="quick-item"><div><strong>${escapeHtml(product.emoji)} ${escapeHtml(product.name)}</strong><span>${escapeHtml(product.category)}</span></div><span class="badge low">${product.stock} left</span></div>`).join("") : `<div class="empty" style="padding:15px 0">All active products have healthy stock.</div>`;
+    }
+    function renderOrders() {
+      const search = document.getElementById("order-search").value.trim().toLowerCase();
+      const status = document.getElementById("order-status-filter").value;
+      const orders = [...state.orders].sort((a, b) => b.createdAt - a.createdAt).filter(order => (!status || order.status === status) && `${order.id} ${order.customerName} ${order.customerPhone}`.toLowerCase().includes(search));
+      document.getElementById("orders-table").innerHTML = orders.length ? orders.map(order => `<tr><td class="primary-text">${escapeHtml(order.id)}<div class="secondary-text">${formatDate(order.createdAt)}</div></td><td>${escapeHtml(order.customerName)}<div class="secondary-text">${escapeHtml(order.customerPhone)}</div></td><td>${order.items.map(item => `${item.quantity}× ${escapeHtml(item.name)}`).join(", ")}</td><td style="max-width:220px;white-space:normal">${escapeHtml(orderAddress(order))}</td><td class="primary-text">${money(order.total)}</td><td>${statusBadge(order.status)}</td><td><button class="button secondary small" data-order="${escapeHtml(order.id)}">View</button></td></tr>`).join("") : `<tr><td colspan="7"><div class="empty"><strong>No matching orders</strong>New storefront orders will appear here automatically.</div></td></tr>`;
+      const deliveryOrders = orders.filter(order => !["Delivered", "Cancelled"].includes(order.status));
+      document.getElementById("delivery-table").innerHTML = deliveryOrders.length ? deliveryOrders.map(order => `<tr><td class="primary-text">${escapeHtml(order.id)}</td><td>${escapeHtml(order.customerName)}<div class="secondary-text">${escapeHtml(order.customerPhone)}</div></td><td style="max-width:280px;white-space:normal">${escapeHtml(orderAddress(order))}</td><td>${statusBadge(order.status)}</td><td><button class="button secondary small" data-order="${escapeHtml(order.id)}">Update</button></td></tr>`).join("") : `<tr><td colspan="5"><div class="empty">No orders waiting for delivery.</div></td></tr>`;
+    }
+    function renderCategories() {
+      const chips = document.getElementById("category-chips");
+      const datalist = document.getElementById("category-options");
+      if (datalist) {
+        datalist.innerHTML = state.categories.map(category => `<option value="${escapeHtml(category)}"></option>`).join("");
+      }
+      if (!chips) return;
+      if (!state.categories.length) {
+        chips.innerHTML = `<div class="empty" style="padding:12px 0">No categories created yet.</div>`;
+        return;
+      }
+      chips.innerHTML = state.categories.map(category => `<span class="customer-products" style="display:inline-flex;align-items:center;gap:6px;margin:2px 4px 2px 0;padding:0;background:transparent"><span style="padding:6px 10px;border-radius:18px;background:#f1f5ee;color:#4a594d;display:inline-flex;align-items:center;gap:8px;">${escapeHtml(category)} <button type="button" class="button secondary small" data-remove-category="${escapeHtml(category)}" style="min-height:22px;padding:4px 7px;border-radius:7px;font-size:9px;">Remove</button></span></span>`).join("");
+    }
+    function renderProducts() {
+      const search = document.getElementById("product-search").value.trim().toLowerCase();
+      const products = state.products.filter(product => `${product.name} ${product.category}`.toLowerCase().includes(search));
+      document.getElementById("products-table").innerHTML = products.length ? products.map(product => `<tr data-product-row="${product.id}"><td><div class="product-cell"><span class="product-emoji">${escapeHtml(product.emoji)}</span><div><span class="primary-text">${escapeHtml(product.name)}</span><div class="secondary-text">${escapeHtml(product.weight)}</div></div></div></td><td>${escapeHtml(product.category)}</td><td><label class="sr-only" for="price-${product.id}">Price</label><input class="inline-input" id="price-${product.id}" data-price="${product.id}" type="number" min="0" step="0.01" value="${Number(product.price)}" aria-label="Price for ${escapeHtml(product.name)}"></td><td><input class="inline-input stock-input" data-stock="${product.id}" type="number" min="0" step="1" value="${product.stock}" aria-label="Stock for ${escapeHtml(product.name)}"></td><td><button class="button ${product.active ? "secondary" : "secondary"} small" data-toggle="${product.id}">${product.active ? "Listed" : "Hidden"}</button></td><td><button class="button small" data-save-product="${product.id}">Save</button></td></tr>`).join("") : `<tr><td colspan="6"><div class="empty">No products match your search.</div></td></tr>`;
+    }
+    function renderCustomers() {
+      const search = document.getElementById("customer-search").value.trim().toLowerCase();
+      const customers = state.customers.filter(customer => `${customer.name} ${customer.phone}`.toLowerCase().includes(search));
+      document.getElementById("customers-table").innerHTML = customers.length ? customers.map(customer => {
+        const topProducts = Object.entries(customer.products).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([name]) => name).join(", ");
+        return `<tr class="clickable" data-customer="${escapeHtml(customer.phone)}"><td class="primary-text">${escapeHtml(customer.name)}</td><td>${escapeHtml(customer.phone)}</td><td>${customer.orderCount}</td><td class="primary-text">${money(customer.totalSpent)}</td><td>${formatDate(customer.lastOrderAt)}</td><td style="max-width:200px;white-space:normal">${escapeHtml(topProducts || "—")}</td></tr>`;
+      }).join("") : `<tr><td colspan="6"><div class="empty"><strong>No customer records yet</strong>Customer order history appears after checkout.</div></td></tr>`;
+    }
+    function renderAll() { renderOverview(); renderOrders(); renderProducts(); renderCustomers(); renderCategories(); }
+    function showOrder(orderId) {
+      const order = state.orders.find(item => item.id === orderId);
+      if (!order) return;
+      state.selectedOrder = order;
+      document.getElementById("order-title").textContent = `Order ${order.id}`;
+      document.getElementById("order-subtitle").textContent = formatDate(order.createdAt);
+      document.getElementById("order-status").value = order.status || "New";
+      document.getElementById("partner-location").value = order.partnerLocation || "";
+      const location = order.address && order.address.location;
+      const mapLink = location && Number.isFinite(location.latitude) && Number.isFinite(location.longitude) ? `<a href="https://maps.google.com/?q=${location.latitude},${location.longitude}" target="_blank" rel="noreferrer">Open customer delivery pin ↗</a>` : "";
+      document.getElementById("order-detail").innerHTML = `<div class="detail-grid"><div class="detail-item"><span>Customer</span><strong>${escapeHtml(order.customerName)} · ${escapeHtml(order.customerPhone)}</strong></div><div class="detail-item"><span>Payment</span><strong>${order.paymentMethod === "upi" ? "UPI (demo)" : "Cash on delivery (demo)"}</strong></div><div class="detail-item"><span>Delivery address</span><strong>${escapeHtml(orderAddress(order))}</strong>${mapLink}</div><div class="detail-item"><span>Order total</span><strong>${money(order.total)}</strong></div></div><div class="card-head"><h2>Items</h2></div><div class="quick-list">${order.items.map(item => `<div class="quick-item"><div><strong>${escapeHtml(item.emoji || "🛍️")} ${escapeHtml(item.name)}</strong><span>${escapeHtml(item.weight || "")} · ${money(item.price)} each</span></div><span class="primary-text">× ${item.quantity}</span></div>`).join("")}</div><div class="quick-item"><span>Item subtotal</span><strong>${money(order.subtotal)}</strong></div><div class="quick-item"><span>Delivery fee</span><strong>${money(order.deliveryFee)}</strong></div>`;
+      document.getElementById("order-dialog").showModal();
+    }
+    function showCustomer(phone) {
+      const customer = state.customers.find(item => item.phone === phone);
+      if (!customer) return;
+      document.getElementById("customer-title").textContent = customer.name;
+      document.getElementById("customer-subtitle").textContent = customer.phone;
+      const products = Object.entries(customer.products).sort((a, b) => b[1] - a[1]);
+      const history = [...customer.orders].sort((a, b) => b.createdAt - a.createdAt);
+      document.getElementById("customer-detail").innerHTML = `<div class="detail-grid"><div class="detail-item"><span>Orders by this number</span><strong>${customer.orderCount}</strong></div><div class="detail-item"><span>Total spent</span><strong>${money(customer.totalSpent)}</strong></div><div class="detail-item"><span>Last order</span><strong>${formatDate(customer.lastOrderAt)}</strong></div><div class="detail-item"><span>Different products</span><strong>${products.length}</strong></div></div><h3 style="font-size:12px;margin:18px 0 8px">Products purchased</h3><div class="customer-products">${products.length ? products.map(([name, quantity]) => `<span>${escapeHtml(name)} · ${quantity}</span>`).join("") : `<span>No products yet</span>`}</div><h3 style="font-size:12px;margin:20px 0 8px">Order history</h3><div class="quick-list">${history.map(order => `<div class="quick-item"><div><strong>${escapeHtml(order.id)}</strong><span>${formatDate(order.createdAt)} · ${statusBadge(order.status)}</span></div><strong>${money(order.total)}</strong></div>`).join("")}</div>`;
+      document.getElementById("customer-dialog").showModal();
+    }
+    async function saveOrder() {
+      const order = state.selectedOrder;
+      if (!order) return;
+      const updated = await api(`/api/orders/${encodeURIComponent(order.id)}`, { method: "PATCH", body: JSON.stringify({ status: document.getElementById("order-status").value, partnerLocation: document.getElementById("partner-location").value }) });
+      Object.assign(order, updated);
+      document.getElementById("order-dialog").close();
+      renderAll();
+      toast("Order updated.");
+    }
+    async function saveProduct(productId) {
+      const price = document.querySelector(`[data-price="${productId}"]`).value;
+      const stock = document.querySelector(`[data-stock="${productId}"]`).value;
+      const product = await api(`/api/products/${productId}`, { method: "PATCH", body: JSON.stringify({ price, stock }) });
+      Object.assign(state.products.find(item => item.id === productId), product);
+      renderAll();
+      toast("Product and inventory saved.");
+    }
+    document.querySelectorAll(".nav button").forEach(button => button.addEventListener("click", () => {
+      const page = button.dataset.page;
+      document.querySelectorAll(".nav button").forEach(item => item.classList.toggle("active", item === button));
+      document.querySelectorAll(".page").forEach(item => item.classList.toggle("active", item.id === `page-${page}`));
+      document.getElementById("breadcrumb").textContent = button.textContent.trim();
+    }));
+    document.querySelectorAll("[data-go]").forEach(button => button.addEventListener("click", () => document.querySelector(`[data-page="${button.dataset.go}"]`).click()));
+    document.getElementById("login-form").addEventListener("submit", async event => {
+      event.preventDefault();
+      const error = document.getElementById("login-error");
+      error.textContent = "";
+      try {
+        const result = await api("/api/login", { method: "POST", body: JSON.stringify({ username: document.getElementById("login-username").value, password: document.getElementById("login-password").value }) });
+        document.getElementById("username-label").textContent = result.username;
+        await refreshData();
+        hideLogin();
+      } catch (reason) { error.textContent = reason.message; }
+    });
+    document.getElementById("logout").addEventListener("click", async () => {
+      try { await api("/api/logout", { method: "POST", body: "{}" }); }
+      catch (error) { showError(error); }
+      showLogin();
+    });
+    document.getElementById("refresh").addEventListener("click", async () => {
+      try { await refreshData(); toast("Dashboard data refreshed."); }
+      catch (error) { showError(error); }
+    });
+    document.getElementById("orders-table").addEventListener("click", event => {
+      const button = event.target.closest("[data-order]");
+      if (button) showOrder(button.dataset.order);
+    });
+    document.getElementById("recent-orders").addEventListener("click", event => {
+      const row = event.target.closest("[data-order]");
+      if (row) showOrder(row.dataset.order);
+    });
+    document.getElementById("delivery-table").addEventListener("click", event => {
+      const button = event.target.closest("[data-order]");
+      if (button) showOrder(button.dataset.order);
+    });
+    document.getElementById("customers-table").addEventListener("click", event => {
+      const row = event.target.closest("[data-customer]");
+      if (row) showCustomer(row.dataset.customer);
+    });
+    document.getElementById("products-table").addEventListener("click", async event => {
+      const save = event.target.closest("[data-save-product]");
+      const toggle = event.target.closest("[data-toggle]");
+      try {
+        if (save) await saveProduct(Number(save.dataset.saveProduct));
+        if (toggle) {
+          const productId = Number(toggle.dataset.toggle);
+          const product = state.products.find(item => item.id === productId);
+          const updated = await api(`/api/products/${productId}`, { method: "PATCH", body: JSON.stringify({ active: !product.active }) });
+          Object.assign(product, updated);
+          renderAll();
+          toast(product.active ? "Product listed on the storefront." : "Product hidden from the storefront.");
+        }
+      } catch (error) { showError(error); }
+    });
+    document.getElementById("save-order").addEventListener("click", async () => {
+      try { await saveOrder(); }
+      catch (error) { showError(error); }
+    });
+    document.getElementById("add-product").addEventListener("click", () => document.getElementById("product-dialog").showModal());
+    document.getElementById("add-category-button").addEventListener("click", async () => {
+      const input = document.getElementById("new-category-name");
+      const name = input.value.trim();
+      if (!name) return;
+      try {
+        await api("/api/categories", { method: "POST", body: JSON.stringify({ name }) });
+        input.value = "";
+        await refreshData();
+        toast(`Category “${name}” added.`);
+      } catch (error) { showError(error); }
+    });
+    document.getElementById("new-category-name").addEventListener("keydown", async event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("add-category-button").click();
+      }
+    });
+    document.getElementById("category-chips").addEventListener("click", async event => {
+      const button = event.target.closest("[data-remove-category]");
+      if (!button) return;
+      const name = button.dataset.removeCategory;
+      if (!name) return;
+      try {
+        await api(`/api/categories/${encodeURIComponent(name)}`, { method: "DELETE" });
+        await refreshData();
+        toast(`Category “${name}” removed.`);
+      } catch (error) { showError(error); }
+    });
+    document.getElementById("product-form").addEventListener("submit", async event => {
+      event.preventDefault();
+      const product = {
+        name: document.getElementById("new-name").value,
+        category: document.getElementById("new-category").value,
+        emoji: document.getElementById("new-emoji").value,
+        price: document.getElementById("new-price").value,
+        stock: document.getElementById("new-stock").value,
+        weight: document.getElementById("new-weight").value,
+        origin: document.getElementById("new-origin").value
+      };
+      try {
+        await api("/api/products", { method: "POST", body: JSON.stringify(product) });
+        document.getElementById("product-dialog").close();
+        event.target.reset();
+        await refreshData();
+        toast("Product added to the catalogue.");
+      } catch (error) { showError(error); }
+    });
+    document.getElementById("order-search").addEventListener("input", renderOrders);
+    document.getElementById("order-status-filter").addEventListener("change", renderOrders);
+    document.getElementById("product-search").addEventListener("input", renderProducts);
+    document.getElementById("customer-search").addEventListener("input", renderCustomers);
+    document.querySelectorAll("[data-close]").forEach(button => button.addEventListener("click", () => document.getElementById(button.dataset.close).close()));
+    (async function init() {
+      try {
+        const session = await api("/api/session");
+        if (!session.authenticated) return showLogin();
+        document.getElementById("username-label").textContent = session.username;
+        await refreshData();
+        hideLogin();
+      } catch { showLogin(); }
+    })();
+    setInterval(async () => {
+      if (document.visibilityState !== "visible" || document.querySelector("dialog[open]")) return;
+      try { await refreshData(); }
+      catch (error) { showError(error); }
+    }, 10000);
+  </script>
+</body>
+</html>
