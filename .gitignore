@@ -1,4 +1,10 @@
+# Local secrets
 /.env
-data/store-db.json
-data/store-db.json.tmp
+/.env.*
+!/.env.example
+
+# Local database and private customer/order data
+/data/store-db.json*
+
+# Local screenshot containing private checkout details
 /WhatsApp Image 2026-10-30 at 12.15.47 PM (1).jpeg
