@@ -778,7 +778,7 @@
       <div class="product-grid" id="product-grid"></div>
     </section>
 
-    <footer class="footer"><span>© <span id="copyright-year"></span> DashBasket · Demo storefront</span><span>Demo checkout saves orders to this local store. No payment is collected. <a href="/admin.html">Store admin</a></span></footer>
+    <footer class="footer"><span>© <span id="copyright-year"></span> DashBasket · Demo storefront</span><span>Demo checkout saves orders to this local store. No payment is collected.</span></footer>
   </main>
 
   <nav class="bottom-nav" id="bottom-nav" aria-label="Main navigation">
@@ -856,7 +856,7 @@
         <div><h2>Your orders</h2><p>Order history and delivery updates.</p></div>
         <button class="dialog-close" type="button" data-close-dialog aria-label="Close order history">×</button>
       </div>
-      <p class="orders-notice">Your order history is saved on this device. Store order processing is managed in the local admin dashboard.</p>
+      <p class="orders-notice">Your order history is saved on this device. This demo does not collect payment or send real orders to a store.</p>
       <div id="order-history"></div>
       <div id="tracking-details"></div>
     </div>
@@ -1481,13 +1481,13 @@
         try {
           result = await response.json();
         } catch {
-          throw new Error(`The store returned an unreadable response (${response.status}). Please refresh the page and check the admin dashboard before trying again.`);
+          throw new Error(`The store returned an unreadable response (${response.status}). Please refresh the page and try again.`);
         }
         if (!response.ok) throw new Error(result.error || `Order could not be saved (${response.status}).`);
         order = result;
       } catch (error) {
         const message = error instanceof TypeError && /fetch|network/i.test(error.message)
-          ? "Cannot reach the store server. On mobile, open the computer's Wi-Fi address (not 127.0.0.1), connect both devices to the same Wi-Fi, and make sure the server is running. Check the admin dashboard before retrying in case the order was saved."
+          ? "Cannot reach the store server. On mobile, open the computer's Wi-Fi address (not 127.0.0.1), connect both devices to the same Wi-Fi, and make sure the server is running. Check your order history before retrying in case the order was saved."
           : error.message || "Could not connect to the store. Please try again.";
         document.getElementById("checkout-error").textContent = message;
         placeOrderButton.disabled = false;
